@@ -1,5 +1,4 @@
-chroma_db/
-rag_data/
+rag_data/chroma_db_*/
 __pycache__/
 *.pyc
 .pytest_cache/
