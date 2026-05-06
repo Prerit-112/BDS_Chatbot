@@ -126,13 +126,6 @@ def main() -> None:
     with st.sidebar:
         st.image("https://www.bharatsokagakkai.org/wp-content/uploads/2021/04/bsg-logo-new.png", width=100)
         st.header("Control Center")
-        
-        with st.expander("🔑 Authentication", expanded=False):
-            key_in = st.text_input(
-                "OpenAI API key",
-                value=_get_api_key() or "",
-                type="password",
-            )
             
         with st.expander("⚙️ Model Settings", expanded=False):
             model = st.text_input("Chat model", value=config.OPENAI_MODEL)
@@ -152,9 +145,12 @@ def main() -> None:
         else:
             st.error("Knowledge Base: Missing")
 
-    api_key = (key_in or _get_api_key() or "").strip()
+    api_key = _get_api_key()
     if not api_key:
-        st.warning("Please provide an OpenAI API key to continue.")
+        st.error(
+            "OpenAI API key not found. Set `OPENAI_API_KEY` in your `.env` file "
+            "(or in `.streamlit/secrets.toml`) and restart the app."
+        )
         st.stop()
 
     if "messages" not in st.session_state:
