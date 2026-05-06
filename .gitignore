@@ -1,0 +1,8 @@
+chroma_db/
+rag_data/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
